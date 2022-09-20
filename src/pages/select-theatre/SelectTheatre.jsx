@@ -6,6 +6,8 @@ import "./SelectTheatre.css";
 import { getMovieDetails } from "../../api/movies";
 import { getAllTheatres } from "../../api/theatres";
 import { getTheatresForCurrentMovie } from "../../utils/getTheatres";
+import {MdFastfood} from 'react-icons/md'
+import {FaMobileAlt} from 'react-icons/fa'
 
 const SelectTheatre = () => {
     const params = useParams();
@@ -14,7 +16,6 @@ const SelectTheatre = () => {
     const { movieName, movieId } = params;
 
     useEffect(() => {
-        //componentDidMount
         fetchMovieDetail(movieId);
         fetchAllTheatres();
     }, []);
@@ -51,14 +52,9 @@ const SelectTheatre = () => {
 
     // give default empty string values to variables if they are undefined
     const {
-        trailerUrl = "",
-        posterUrl = "",
-        name = "",
         description = "",
         director = "",
         releaseDate = "",
-        casts = [],
-        _id = "",
         releaseStatus,
         language,
     } = movieDetail;
@@ -66,7 +62,7 @@ const SelectTheatre = () => {
     return (
         <div>
             <Header />
-            <div className='select-main p-5'>
+            <div className='select-main p-5 my-5'>
                 <h2>{movieName}</h2>
                 <div className='d-flex justify-content-center align-items-center'>
                     <div className='movie-tag desc'>{description}</div>
@@ -88,21 +84,23 @@ const SelectTheatre = () => {
                 <div className='theatre-list my-5 container'>
                     {currentMovieTheatres.map(theatre => {
                         const { name, _id } = theatre;
-
                         return (
+                            <div className="theatreData my-3">
                             <Link
                                 to={`/select-seats/${movieId}/${_id}`}
-                                className='theatre-item row p-4'
+                                className='theatre-item row p-4' key={_id}
                             >
                                 <h4 className='col-sm-4'>{name}</h4>
                                 <h4 className='text-danger col-sm-4'>
-                                    <i className='bi bi-phone-fill text-danger'></i>
+                                    <FaMobileAlt className='bi bi-phone-fill text-danger'/>
                                     m-Ticket
                                 </h4>
                                 <h4 className='text-success col-sm-4'>
+                                    <MdFastfood />
                                     Food & Beverages
                                 </h4>
                             </Link>
+                            </div>
                         );
                     })}
                 </div>

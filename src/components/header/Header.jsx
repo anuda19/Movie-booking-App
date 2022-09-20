@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CButton } from "@coreui/react";
 import "./header.css";
 
 const Header = props => {
-    const { filterMoviesBySearch, showSearch } = props;
+    const { filterMoviesBySearch, showSearch, watchlist, hideWatch } = props;
     const navigate = useNavigate();
     const [searchText, setSearchText] = useState("");
 
@@ -25,16 +25,16 @@ const Header = props => {
     const isUserLoggedIn = localStorage.getItem("accessToken");
 
     return (
-        <div className='bg-dark p-4 d-flex justify-content-between'>
+        <div className='p-1 d-flex justify-content-between navbar_main'>
             <div>
                 <a
-                    className='display-6 text-danger py-1 remove-underline'
+                    className='display-6 py-1 remove-underline fw-bold'
                     href='#'
                     onClick={() => {
                         navigate("/");
                     }}
                 >
-                    MY TICKET
+                    SHOW TIME
                 </a>
             </div>
 
@@ -47,7 +47,7 @@ const Header = props => {
                         onChange={e => {
                             setSearchText(e.target.value);
                         }}
-                        placeholder={"Enter movie name"}
+                        placeholder={"Enter Movie Name"}
                     />
                     <CButton
                         type='submit'
@@ -59,11 +59,23 @@ const Header = props => {
                 </form>
             )}
 
+            {hideWatch ? (
+                <Link to='/watchlist'>
+            <CButton
+                        type='submit'
+                        color='danger'
+                        className='px-3 searchBtn'
+                    >
+                        Watchlist <span>{watchlist?.length}</span>
+                    </CButton>
+                    </Link>
+            ):("")}
+                
             {isUserLoggedIn ? (
                 <CButton
                     type='submit'
                     color='danger'
-                    className='px-3'
+                    className='px-3 logoutBtn'
                     onClick={logoutFn}
                 >
                     Logout

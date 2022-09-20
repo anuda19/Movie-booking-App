@@ -54,7 +54,7 @@ const MovieDetail = () => {
         <div className='movie-detail bg-light'>
             <Header />
 
-            <div className='video-player d-flex justify-content-center'>
+            <div className='video-player d-flex justify-content-center my-5'>
                 <ReactPlayer
                     url={trailerUrl}
                     controls
@@ -76,28 +76,21 @@ const MovieDetail = () => {
                     <div className='col'>
                         <h2>{name}</h2>
                         <h4>{description}</h4>
-
                         <hr />
-
                         <h5>Directed by: {director}</h5>
                         <h5>Release Date: {releaseDate}</h5>
-
                         <hr />
-
                         <h4>Casts</h4>
                         {casts.map(cast => {
                             return <h5 key={cast}>{cast}</h5>;
                         })}
-
                         <hr />
-
                         <Link className='btn btn-danger' to={buttonUrl}>
                             {buttonText}
                         </Link>
                     </div>
                 </div>
             </div>
-
             <Footer />
         </div>
     );

@@ -1,0 +1,8 @@
+.carousel{
+    margin-top: 50px;
+    position: relative;
+}
+.carousel_image{
+    box-shadow: inset 2px 3px 5px 6px;
+    filter:brightness(100%);
+}

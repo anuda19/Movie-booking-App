@@ -11,15 +11,19 @@ import Home from "./pages/home/Home";
 import MovieDetail from "./pages/movie-detail/MovieDetail";
 import SelectTheatre from "./pages/select-theatre/SelectTheatre";
 import SelectSeats from "./pages/select-seats/SelectSeats";
+import Watchlist from "./pages/watchlist/Watchlist";
+import { useState } from "react";
 
 function App() {
+    const [watchlist, setWatchlist] = useState([])
     return (
         <div className='App'>
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<Home watchlist={watchlist} setWatchlist={setWatchlist}/>} />
                 <Route path='/login' element={<Authentication />} />
                 <Route path='/client' element={<Client />} />
                 <Route path='/admin' element={<Admin />} />
+                <Route path='/watchlist' element={<Watchlist watchlist={watchlist} setWatchlist={setWatchlist}/>} />
                 <Route
                     path='/movie-detail/:movieId'
                     element={<MovieDetail />}

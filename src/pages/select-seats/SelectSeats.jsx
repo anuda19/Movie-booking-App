@@ -17,11 +17,11 @@ const SelectSeats = () => {
     const { movieId, theatreId } = params;
     const [movieDetail, setMovieDetail] = useState({});
     const [theatreDetail, setTheatreDetail] = useState({});
-    const [confirmationModal, setConfirmationModal] = useState(false);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [occupiedSeats, setOccupiedSeats] = useState(DEFAULT_OCCUPIED_SEATS);
     const [bookingDetail, setBookingDetail] = useState({});
     const [paymentDetail, setPaymentDetail] = useState({});
+    const [confirmationModal, setConfirmationModal] = useState(false);
     const [paymentSuccessful, setPaymentSuccessful] = useState(false);
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const SelectSeats = () => {
             .then(res => {
                 const { data, status } = res;
                 if (status === 200) {
-                    console.log(data);
+                    // console.log(data);
                     setMovieDetail(data);
                 }
             })
@@ -100,7 +100,7 @@ const SelectSeats = () => {
             .then(res => {
                 const { data, status } = res;
                 if (status === 200) {
-                    console.log(data);
+                    // console.log(data);
                     setTheatreDetail(data);
                 }
             })
@@ -116,7 +116,7 @@ const SelectSeats = () => {
         <div>
             <Header />
 
-            <div className='select-seats-main p-5'>
+            <div className='select-seats-main p-5 mt-5'>
                 <h2>
                     {movieName}-{theatreName}
                 </h2>

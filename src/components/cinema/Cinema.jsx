@@ -68,14 +68,14 @@ const Cinema = props => {
                                     return (
                                         <div
                                             className={classNm}
-                                            onClick={() => {
+                                            
+                                        >
+                                        <span onClick={() => {
                                                 handleSelectSeat(
                                                     rowIndex,
                                                     colIndex
                                                 );
-                                            }}
-                                        >
-                                            <Seat seatStatus={cinemaCol} />
+                                            }}><Seat seatStatus={cinemaCol} /></span>
                                         </div>
                                     );
                                 })}
